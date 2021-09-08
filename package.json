@@ -1,5 +1,5 @@
 {
-  "name": "next-auth-typescript-example",
+  "name": "welygo",
   "version": "0.0.0",
   "private": true,
   "description": "An example project for NextAuth.js using Typescript",
@@ -15,11 +15,6 @@
     "start": "next start",
     "types": "tsc --noEmit"
   },
-  "author": "Lluis Agusti <lluis@hey.com>",
-  "contributors": [
-    "Balázs Orbán <info@balazsorban.com>",
-    "Iain Collins <me@iaincollins.com>"
-  ],
   "license": "ISC",
   "prettier": {
     "semi": false

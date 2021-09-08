@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+.search-container {
+  @apply p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white;
+}
+
+.search__control {
+  width: 200px;
+  border: none !important;
+  &:hover {
+    border: none;
+  }
+}
+
+.input-focus {
+  @apply focus:ring-2 focus:ring-blue-300;
+}
+
+.basic-input {
+  @apply w-60 p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white;
+}
+
+.button-basic {
+  @apply bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded;
+}

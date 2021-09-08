@@ -1,0 +1,12 @@
+.site-nav {
+  @apply fixed flex-grow justify-center  w-64 h-screen top-0 -right-64 m-auto bg-white;
+  transition: all 0.3s ease;
+
+  @screen lg {
+    @apply relative flex h-auto right-0 w-auto bg-transparent text-pink-600;
+  }
+}
+
+.site-nav-open {
+  @apply right-0;
+}

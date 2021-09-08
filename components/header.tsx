@@ -1,6 +1,9 @@
 import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/client"
-import { Button } from "semantic-ui-react"
+import { Button, Icon } from "semantic-ui-react"
+import { useRef, useState } from "react"
+
+import useOnClickOutside from "../hooks"
 
 const ButtonsConnection = () => (
   <div>
@@ -14,6 +17,9 @@ const ButtonsConnection = () => (
 // rendering, and avoids any flash incorrect content on initial page load.
 export default function Header() {
   const [session, loading] = useSession()
+  const ref = useRef(null)
+  const [isMenuOpen, setMenuOpen] = useState(false)
+  useOnClickOutside(ref, () => setMenuOpen(false))
 
   return (
     <header>
@@ -93,7 +99,10 @@ export default function Header() {
           {/*  <img src="/public/logo.png" alt="welygo logo" /> */}
           <span className="font-semibold text-xl tracking-tight">Welygo</span>
         </div>
-        <ul className="hidden lg:flex flex-grow justify-center ">
+        <ul
+          ref={ref}
+          className={`site-nav ${isMenuOpen ? "site-nav-open" : ""}`}
+        >
           <li className="mr-xl font-semibold">
             <Link href="/client">Client</Link>
           </li>
@@ -113,8 +122,16 @@ export default function Header() {
             </Link>
           </li>
         </ul>
-        <div className="hidden lg:flex">
-          <ButtonsConnection />
+        <div className="flex ">
+          <span className="cursor-pointer ml-2">
+            <Icon name="user outline" size="large"></Icon>
+          </span>
+          <span
+            className="ml-2 block lg:hidden cursor-pointer"
+            onClick={() => setMenuOpen(true)}
+          >
+            <Icon name="bars" size="large"></Icon>
+          </span>
         </div>
       </nav>
     </header>

@@ -11,7 +11,7 @@ body {
 }
 
 a {
-  color: inherit;
+  color: none;
   text-decoration: none;
 }
 
@@ -23,26 +23,18 @@ a {
   outline: none;
 }
 
-.search-container {
-  @apply p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white;
-}
+.content-container {
+  @apply w-full px-7;
 
-.search__control {
-  width: 200px;
-  border: none !important;
-  &:hover {
-    border: none;
+  @screen md {
+    @apply w-full px-14;
+  }
+
+  @screen lg {
+    @apply w-full px-28;
   }
 }
 
-.input-focus {
-  @apply focus:ring-2 focus:ring-blue-300;
-}
-
-.basic-input {
-  @apply w-60 p-4 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white;
-}
-
-.button-basic {
-  @apply bg-blue-400 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded;
+.link {
+  @apply text-white hover:text-white;
 }

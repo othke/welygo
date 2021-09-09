@@ -1,0 +1,32 @@
+.background-image {
+  @apply w-full bg-center bg-no-repeat bg-cover bg-gray-100;
+  height: 80vh;
+  background-image: url("/img/concert-v2.jpg");
+}
+
+.intro {
+  @apply background-image flex flex-col items-start justify-center;
+}
+
+.intro-title {
+  @apply text-6xl w-1/2 text-white font-bold;
+}
+
+.search-form {
+  .search-action {
+    @apply flex items-center pt-4 text-white;
+  }
+  .search-icon {
+    display: flex;
+    color: white;
+    border-radius: 25px;
+    border: solid 1px orange;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    cursor: pointer;
+    font-size: 1.3rem;
+    margin-right: 1rem;
+  }
+}

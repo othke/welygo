@@ -1,9 +1,11 @@
 import Link from "next/link"
 import { signIn, signOut, useSession } from "next-auth/client"
 import { Button, Icon } from "semantic-ui-react"
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 import useOnClickOutside from "../hooks"
+import { useRouter } from "next/router"
+import { AppProps } from "next/app"
 
 const ButtonsConnection = () => (
   <div>
@@ -11,26 +13,56 @@ const ButtonsConnection = () => (
     <Button secondary>Secondary</Button>
   </div>
 )
+const styles = {} as any
 
 // The approach used in this component shows how to built a sign in and sign out
 // component that works on pages which support both client and server side
 // rendering, and avoids any flash incorrect content on initial page load.
-export default function Header() {
+export default function Header({
+  isErrorPage,
+}: AppProps & { isErrorPage: boolean }) {
   const [session, loading] = useSession()
   const ref = useRef(null)
   const [isMenuOpen, setMenuOpen] = useState(false)
   useOnClickOutside(ref, () => setMenuOpen(false))
 
+  const router = useRouter()
+  const arrayPaths = ["/"]
+
+  const [onTop, setOnTop] = useState(
+    !arrayPaths.includes(router.pathname) || isErrorPage ? false : true
+  )
+
+  const headerClass = () => {
+    if (window.pageYOffset === 0) {
+      setOnTop(true)
+    } else {
+      setOnTop(false)
+    }
+  }
+
+  useEffect(() => {
+    if (!arrayPaths.includes(router.pathname) || isErrorPage) {
+      return
+    }
+
+    headerClass()
+    window.onscroll = function () {
+      headerClass()
+    }
+  }, [])
+
   return (
-    <header>
-      <noscript>
-        <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
-      </noscript>
-      <div /* className={styles.signedInStatus} */>
+    <header
+      className={`content-container site-header ${
+        !onTop ? "site-header--fixed" : ""
+      }`}
+    >
+      {/*    <div className={styles.signedInStatus}>
         <p
-        /*       className={`nojs-show ${
+          className={`nojs-show ${
             !session && loading ? styles.loading : styles.loaded
-          }`} */
+          }`}
         >
           {!session && (
             <>
@@ -46,7 +78,7 @@ export default function Header() {
                 Sign In
               </Button>
 
-              {/*         <a
+              <a
                 href={`/api/auth/signin`}
                 className={styles.buttonPrimary}
                 onClick={(e) => {
@@ -55,16 +87,16 @@ export default function Header() {
                 }}
               >
                 Sign in
-              </a> */}
+              </a>
             </>
           )}
           {session?.user && (
             <>
               <span
                 style={{ backgroundImage: `url(${session.user.image})` }}
-                /* className={styles.avatar} */
+                className={styles.avatar}
               />
-              <span /* className={styles.signedInText} */>
+              <span className={styles.signedInText}>
                 <small>Signed in as</small>
                 <br />
                 <strong>{session.user.email || session.user.name}</strong>
@@ -79,7 +111,7 @@ export default function Header() {
               >
                 Sign Out
               </Button>
-              {/*       <a
+              <a
                 href={`/api/auth/signout`}
                 className={styles.button}
                 onClick={(e) => {
@@ -88,37 +120,43 @@ export default function Header() {
                 }}
               >
                 Sign out
-              </a> */}
+              </a>
             </>
           )}
         </p>
       </div>
-
-      <nav className="flex items-center justify-between flex-wrap bg-teal p-6">
+ */}
+      <nav className="site-nav">
         <div className="flex">
           {/*  <img src="/public/logo.png" alt="welygo logo" /> */}
-          <span className="font-semibold text-xl tracking-tight">Welygo</span>
+          <span className="font-semibold text-2xl tracking-tight">
+            <Link href="/">
+              <a className="link">Welygo</a>
+            </Link>
+          </span>
         </div>
         <ul
           ref={ref}
-          className={`site-nav ${isMenuOpen ? "site-nav-open" : ""}`}
+          className={`site-menu ${isMenuOpen ? "site-menu-open" : ""}`}
         >
-          <li className="mr-xl font-semibold">
-            <Link href="/client">Client</Link>
+          <li className="mr-xl font-semibold hover:text-white">
+            <Link href="/client">
+              <a className="link">Client</a>
+            </Link>
           </li>
           <li className="mr-xl font-semibold">
             <Link href="/server">
-              <a>Server</a>
+              <a className="link">Server</a>
             </Link>
           </li>
           <li className="mr-xl font-semibold">
             <Link href="/protected">
-              <a>Protected</a>
+              <a className="link">Protected</a>
             </Link>
           </li>
           <li className="mr-xl font-semibold">
             <Link href="/api-example">
-              <a>API</a>
+              <a className="link">API</a>
             </Link>
           </li>
         </ul>

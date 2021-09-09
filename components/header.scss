@@ -1,12 +1,31 @@
-.site-nav {
-  @apply fixed flex-grow justify-center  w-64 h-screen top-0 -right-64 m-auto bg-white;
+.site-header {
+  @apply fixed w-full top-0 left-0 h-28 text-white shadow-none;
+  z-index: 999;
   transition: all 0.3s ease;
+}
 
-  @screen lg {
-    @apply relative flex h-auto right-0 w-auto bg-transparent text-pink-600;
+.site-header--fixed {
+  @apply bg-white text-black;
+  .link {
+    @apply text-black hover:text-black;
   }
 }
 
-.site-nav-open {
-  @apply right-0;
+.site-nav {
+  @apply flex items-center justify-between flex-nowrap h-full  p-6;
+}
+.site-menu {
+  @apply fixed flex-grow justify-center  w-64 h-full top-0 -right-64 m-auto bg-white;
+  transition: all 0.3s ease;
+
+  @screen lg {
+    @apply relative flex h-auto right-0 w-auto bg-transparent;
+  }
+}
+
+.site-menu-open {
+  @apply right-0 text-black;
+  .link {
+    @apply text-black hover:text-black;
+  }
 }

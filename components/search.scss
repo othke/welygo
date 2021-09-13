@@ -1,0 +1,12 @@
+.search-form {
+  > label {
+    @apply hidden;
+  }
+  .ui.form .field > label {
+    @apply hidden;
+  }
+
+  @screen md {
+    @apply flex;
+  }
+}

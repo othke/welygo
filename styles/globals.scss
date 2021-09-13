@@ -31,7 +31,11 @@ a {
   }
 
   @screen lg {
-    @apply w-full px-28;
+    @apply w-full px-56;
+  }
+
+  @screen xl {
+    @apply w-full px-80;
   }
 }
 

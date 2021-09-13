@@ -1,4 +1,5 @@
 import { Icon } from "semantic-ui-react"
+import Search from "./search"
 
 export default function Intro() {
   return (
@@ -7,7 +8,7 @@ export default function Intro() {
       <form className="search-form">
         <div className="search-action">
           <Icon className="search-icon" name="search"></Icon>
-          <span>Rechercher un évènement</span>
+          <Search />
         </div>
       </form>
     </section>
